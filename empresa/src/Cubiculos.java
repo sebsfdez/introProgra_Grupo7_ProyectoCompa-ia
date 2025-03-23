@@ -15,6 +15,23 @@ public class Cubiculos {
         this.privados = privados;
         this.publicos = publicos;
     }
+
+    public String getPrivados() {
+        return privados;
+    }
+
+    public void setPrivados(String privados) {
+        this.privados = privados;
+    }
+
+    public String getPublicos() {
+        return publicos;
+    }
+
+    public void setPublicos(String publicos) {
+        this.publicos = publicos;
+    }
+    
     
     
     
