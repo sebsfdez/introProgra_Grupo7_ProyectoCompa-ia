@@ -11,9 +11,7 @@ public class Empleados {
     private String nombre;
     private int ID;
 
-public String empleados(){
-return;
-}
+
     public Empleados(String nombre, int ID) {
         this.nombre = nombre;
         this.ID = ID;
