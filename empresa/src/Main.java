@@ -79,4 +79,13 @@ public class Main {
                 + "6. Salir"));
     }
 
+    //Metodo principal para ejecutar la interfaz grafica
+     public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new ReservaEspaciosR().crearInterfaz();
+            }
+        });
+    }
 }
