@@ -23,6 +23,9 @@ public class ReservEspaciosR {
     private String tenis;
     private String canchaFut1 [][] = new String[7][3];
     private String canchaFut2 [][] = new String[7][3];
+    private String canchaTenis1 [][] = new String [2][3];
+    private String canchaTenis2 [][] = new String [2][3];
+    private String canchaBasket [][] = new String [6][3];
 
     public ReservEspaciosR(String charla, String capacitacion, String mesaPingP, String mesaBillar, String futbol, String basquet, String tenis) {
         this.charla = charla;
@@ -45,6 +48,24 @@ public class ReservEspaciosR {
                 canchaFut2[i][j] = "[O]";
             }
         }
+        //rellenando cancha tenis 1
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                canchaTenis1[i][j] = "[O]"; 
+            }
+        }
+        //rellenando cancha tenis 2
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                canchaTenis2[i][j] = "[O]"; 
+            }
+        }
+        //rellenando cancha Basket
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 3; j++) {
+                canchaBasket[i][j] = "[O]";  
+            }
+        } 
     }
 
     public String getCharla() {
@@ -330,12 +351,221 @@ public class ReservEspaciosR {
     }
 
     public boolean CanchaBasket() {
-        JOptionPane.showMessageDialog(null, "funciona");
-        return true;
+       //prefijar columnas array 1
+        canchaBasket[0][0] = "     ";
+        canchaBasket[0][1] = "*1*";
+        canchaBasket[0][2] = "*2";
+
+        //prefijar filas array 1 
+        canchaBasket[1][0] = "*1*";
+        canchaBasket[2][0] = "*2*";
+        canchaBasket[3][0] = "*3*";
+        canchaBasket[4][0] = "*4*";
+        canchaBasket[5][0] = "*5*";
+
+
+        while (true) {
+            int opcionesBasket = Integer.parseInt(JOptionPane.showInputDialog("Opciones: \n"
+                    + "1. Reservar\n"
+                    + "2. Visualizar espacios\n"
+                    + "3. Regresar"));
+
+            switch (opcionesBasket) {
+                case 1://Reserva
+                    while (true) {
+                        int canchaReserva = Integer.parseInt(JOptionPane.showInputDialog("Cancha a reservar:\n"
+                                + "1. Cancha\n"
+                                + "2. Regresar"));
+                        switch (canchaReserva) {
+                            case 1://cancha 1
+                                int filaBasket = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra: "));
+                                int columnaBasket = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                                if (canchaBasket[filaBasket][columnaBasket] == "[O]") {
+                                    canchaBasket[filaBasket][columnaBasket] = "[P]";
+                                    JOptionPane.showMessageDialog(null, "¡Espacio asignado exitosamente!");
+
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "¡Espacio ocupado!");
+                                }
+                                break;
+                        }
+                        if (canchaReserva > 3 || canchaReserva < 1) {
+                            JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+                        }
+                        if (canchaReserva == 2) {
+                            break;
+                        }
+                    }
+
+                    break;
+                case 2://visualizar
+                    while (true) {
+                        int canchaVisualizar = Integer.parseInt(JOptionPane.showInputDialog("Cancha a visualizar:\n"
+                                + "1. Cancha numero 1\n"
+                                + "2. Regresar"));
+                        switch (canchaVisualizar) {
+                            case 1:
+                                String mostrarEspacios1 = "";
+                                for (int i = 0; i < 6; i++) {
+                                    for (int j = 0; j < 3; j++) {
+                                        mostrarEspacios1 += canchaBasket[i][j] + "   ";
+                                    }
+                                    mostrarEspacios1 += "\n";
+                                }
+                                JOptionPane.showMessageDialog(null, "Cancha:\n"
+                                        + mostrarEspacios1);
+                                break;
+                        }
+
+                        if (canchaVisualizar > 2 || canchaVisualizar < 1) {
+                            JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+                        }
+                        if (canchaVisualizar == 2) {
+                            break;
+                        }
+
+                    }
+
+                    break;
+
+            }
+
+            if (opcionesBasket > 3 || opcionesBasket < 1) {
+                JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+            }
+            if (opcionesBasket == 3) {
+                break;
+            }
+        }
+
+        return true; 
     }
 
     public boolean CanchaTenis() {
-        JOptionPane.showMessageDialog(null, "funciona");
+        //prefijar columnas array 1
+        canchaTenis1[0][0] = "     ";
+        canchaTenis1[0][1] = "*1*";
+        canchaTenis1[0][2] = "*2";
+
+        //prefijar filas array 1 
+        canchaTenis1[1][0] = "*1*";
+        
+       
+
+        //prefijar columnas array 2
+        canchaTenis2[0][0] = "     ";
+        canchaTenis2[0][1] = "*1*";
+        canchaTenis2[0][2] = "*2";
+
+        //prefijar filas array 2
+        canchaTenis2[1][0] = "*1*";
+        
+      
+        while (true) {
+            int opcionesTenis = Integer.parseInt(JOptionPane.showInputDialog("Opciones: \n"
+                    + "1. Reservar\n"
+                    + "2. Visualizar espacios\n"
+                    + "3. Regresar"));
+
+            switch (opcionesTenis) {
+                case 1://Reserva
+                    while (true) {
+                        int canchaReserva = Integer.parseInt(JOptionPane.showInputDialog("Cual cancha desea reservar:\n"
+                                + "1. Cancha numero 1\n"
+                                + "2. Cancha numero 2\n"
+                                + "3. Regresar"));
+                        switch (canchaReserva) {
+                            case 1://cancha 1
+                                int filaTenis1 = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra: "));
+                                int columnaTenis1 = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                                if (canchaTenis1[filaTenis1][columnaTenis1] == "[O]") {
+                                    canchaTenis1[filaTenis1][columnaTenis1] = "[P]";
+                                    JOptionPane.showMessageDialog(null, "¡Espacio asignado exitosamente!");
+
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "¡Espacio ocupado!");
+                                }
+                                break;
+                            case 2://cancha 2
+                                int filaTenis2 = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra: "));
+                                int columnaTenis2 = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                                if (canchaTenis2[filaTenis2][columnaTenis2] == "[O]") {
+                                    canchaTenis2[filaTenis2][columnaTenis2] = "[P]";
+                                    JOptionPane.showMessageDialog(null, "¡Espacio asignado exitosamente!");
+
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "¡Espacio ocupado!");
+                                }
+                                break;
+
+                        }
+                        if (canchaReserva > 3 || canchaReserva < 1) {
+                            JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+                        }
+                        if (canchaReserva == 3) {
+                            break;
+                        }
+                    }
+
+                    break;
+                case 2://visualizar
+                    while (true) {
+                        int canchaVisualizar = Integer.parseInt(JOptionPane.showInputDialog("Cual cancha desea visualizar:\n"
+                                + "1. Cancha numero 1\n"
+                                + "2. Cancha numero 2\n"
+                                + "3. Regresar"));
+                        switch (canchaVisualizar) {
+                            case 1:
+                                String mostrarEspacios1 = "";
+                                for (int i = 0; i < 2; i++) {
+                                    for (int j = 0; j < 3; j++) {
+                                        mostrarEspacios1 += canchaTenis1[i][j] + "   ";
+                                    }
+                                    mostrarEspacios1 += "\n";
+                                }
+                                JOptionPane.showMessageDialog(null, "Cancha numero 1:\n"
+                                        + mostrarEspacios1);
+                                break;
+                            case 2:
+                                String mostrarEspacios2 = "";
+                                for (int i = 0; i < 2; i++) {
+                                    for (int j = 0; j < 3; j++) {
+                                        mostrarEspacios2 += canchaTenis2[i][j] + "   ";
+                                    }
+                                    mostrarEspacios2 += "\n";
+                                }
+                                JOptionPane.showMessageDialog(null, "Cancha numero 2:\n"
+                                        + mostrarEspacios2);
+                                break;
+                        }
+
+                        if (canchaVisualizar > 3 || canchaVisualizar < 1) {
+                            JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+                        }
+                        if (canchaVisualizar == 3) {
+                            break;
+                        }
+
+                    }
+
+                    break;
+
+            }
+
+            if (opcionesTenis > 3 || opcionesTenis < 1) {
+                JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+            }
+            if (opcionesTenis == 3) {
+                break;
+            }
+        }
+
         return true;
     }
 
@@ -385,10 +615,77 @@ public class ReservEspaciosR {
         }
     }
     public void canchaBasketLiberar(){
-    
+        while (true) {
+            int canchaLiberar = Integer.parseInt(JOptionPane.showInputDialog("Cancha de basket a liberar:\n"
+                    + "1. Cancha numero 1\n"
+                    + "2. Regresar"));
+            switch (canchaLiberar) {
+                case 1://cancha 1
+                    int filaBasket = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra: "));
+                    int columnaBasket = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                    if (canchaBasket[filaBasket][columnaBasket] == "[P]") {
+                        canchaBasket[filaBasket][columnaBasket] = "[O]";
+                        JOptionPane.showMessageDialog(null, "¡Espacio liberado exitosamente!");
+
+                    } else if (canchaBasket[filaBasket][columnaBasket] == "[O]") {
+                        JOptionPane.showMessageDialog(null, "¡El espacio ya estaba liberado!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No es permitido liberar este espacio");
+                    }
+                    break;
+            }
+            if (canchaLiberar > 2 || canchaLiberar < 1) {
+                JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+            }
+            if (canchaLiberar == 2) {
+                break;
+            }
+        }
     }
     public void canchaTenisLiberar(){
-    
+        while (true) {
+            int canchaLiberar = Integer.parseInt(JOptionPane.showInputDialog("Cual cancha desea liberar:\n"
+                    + "1. Cancha numero 1\n"
+                    + "2. Cancha numero 2\n"
+                    + "3. Regresar"));
+            switch (canchaLiberar) {
+                case 1://cancha 1
+                    int filaTenis1 = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra: "));
+                    int columnaTenis1 = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                    if (canchaTenis1[filaTenis1][columnaTenis1] == "[P]") {
+                        canchaTenis1[filaTenis1][columnaTenis1] = "[O]";
+                        JOptionPane.showMessageDialog(null, "¡Espacio liberado exitosamente!");
+
+                    } else if (canchaTenis1[filaTenis1][columnaTenis1] == "[O]") {
+                        JOptionPane.showMessageDialog(null, "¡El espacio ya estaba liberado!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No es permitido liberar este espacio");
+                    }
+                    break;
+                case 2://cancha 2
+                    int filaTenis2 = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra: "));
+                    int columnaTenis2 = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                    if (canchaTenis2[filaTenis2][columnaTenis2] == "[P]") {
+                        canchaTenis2[filaTenis2][columnaTenis2] = "[O]";
+                        JOptionPane.showMessageDialog(null, "¡Espacio liberado exitosamente!");
+
+                    } else if (canchaTenis2[filaTenis2][columnaTenis2] == "[O]") {
+                        JOptionPane.showMessageDialog(null, "¡El espacio ya estaba liberado!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No es permitido liberar este espacio");
+                    }
+                    break;
+
+            }
+            if (canchaLiberar > 3 || canchaLiberar < 1) {
+                JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+            }
+            if (canchaLiberar == 3) {
+                break;
+            }
+        }
     }
     public void mesaPingPongLiberar(){
     
