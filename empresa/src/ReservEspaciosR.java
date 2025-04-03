@@ -26,6 +26,8 @@ public class ReservEspaciosR {
     private String canchaTenis1 [][] = new String [2][3];
     private String canchaTenis2 [][] = new String [2][3];
     private String canchaBasket [][] = new String [6][3];
+    private String billar [][] = new String [2][3];
+    private String pingPong [][] = new String [2][3];
 
     public ReservEspaciosR(String charla, String capacitacion, String mesaPingP, String mesaBillar, String futbol, String basquet, String tenis) {
         this.charla = charla;
@@ -66,6 +68,18 @@ public class ReservEspaciosR {
                 canchaBasket[i][j] = "[O]";  
             }
         } 
+        //Rellenando mesa de Ping Pong
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                pingPong[i][j] = "[O]";
+            }
+        }
+       //Rellenando mesa de billar
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                billar[i][j] = "[O]";
+            }
+        }
     }
 
     public String getCharla() {
@@ -209,12 +223,179 @@ public class ReservEspaciosR {
     }
 
     public boolean MesaPingPong() {
-        JOptionPane.showMessageDialog(null, "funciona");
+        //prefijar columnas array 1
+        pingPong[0][0] = "     ";
+        pingPong[0][1] = "*1*";
+        pingPong[0][2] = "*2*";
+        //prefijar filas array 1 
+        pingPong[1][0] = "*1*";
+      
+        
+        while (true) {
+            int opcionesPingPong = Integer.parseInt(JOptionPane.showInputDialog("Opciones: \n"
+                    + "1. Reservar\n"
+                    + "2. Visualizar espacios\n"
+                    + "3. Regresar"));
+
+            switch (opcionesPingPong) {
+                case 1://Reserva
+                    while (true) {
+                        int mesaReserva = Integer.parseInt(JOptionPane.showInputDialog("Mesa de ping pong a reservar:\n"
+                                + "1. Mesa ping pong\n"
+                                + "2. Regresar"));
+                        switch (mesaReserva) {
+                            case 1://cancha 1
+                                int filaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila que se encuentra: "));
+                                int columnaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                                if (pingPong[filaMesa][columnaMesa] == "[O]") {
+                                    pingPong[filaMesa][columnaMesa] = "[P]";
+                                    JOptionPane.showMessageDialog(null, "¡Espacio asignado exitosamente!");
+
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "¡Espacio ocupado!");
+                                }
+                                break;
+                        }
+                        if (mesaReserva > 2 || mesaReserva < 1) {
+                            JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+                        }
+                        if (mesaReserva == 2) {
+                            break;
+                        }
+                    }
+
+                    break;
+                case 2://visualizar
+                    while (true) {
+                        int mesaVisualizar = Integer.parseInt(JOptionPane.showInputDialog("Mesa de ping pong a visualizar:\n"
+                                + "1. Mesa Ping Pong\n"
+                                + "2. Regresar"));
+                        switch (mesaVisualizar) {
+                            case 1:
+                                String mostrarEspacios1 = "";
+                                for (int i = 0; i < 2; i++) {
+                                    for (int j = 0; j < 3; j++) {
+                                        mostrarEspacios1 += pingPong[i][j] + "   ";
+                                    }
+                                    mostrarEspacios1 += "\n";
+                                }
+                                JOptionPane.showMessageDialog(null, "Mesa:\n"
+                                        + mostrarEspacios1);
+                                break;
+                        }
+
+                        if (mesaVisualizar > 2 || mesaVisualizar < 1) {
+                            JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+                        }
+                        if (mesaVisualizar == 2) {
+                            break;
+                        }
+
+                    }
+
+                    break;
+
+            }
+
+            if (opcionesPingPong > 3 || opcionesPingPong < 1) {
+                JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+            }
+            if (opcionesPingPong == 3) {
+                break;
+            }
+        }
+
         return true;
     }
 
     public boolean MesaBillar() {
-        JOptionPane.showMessageDialog(null, "funciona");
+        //prefijar columnas array 1
+        billar[0][0] = "     ";
+        billar[0][1] = "*1*";
+        billar[0][2] = "*2*";
+        //prefijar filas array 1 
+        billar[1][0] = "*1*";
+        
+        while (true) {
+            int opcionesBillar = Integer.parseInt(JOptionPane.showInputDialog("Opciones: \n"
+                    + "1. Reservar\n"
+                    + "2. Visualizar espacios\n"
+                    + "3. Regresar"));
+
+            switch (opcionesBillar) {
+                case 1://Reserva
+                    while (true) {
+                        int mesaReserva = Integer.parseInt(JOptionPane.showInputDialog("Mesa de billar a reservar:\n"
+                                + "1. Mesa de billar\n"
+                                + "2. Regresar"));
+                        switch (mesaReserva) {
+                            case 1://cancha 1
+                                int filaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra: "));
+                                int columnaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                                if (billar[filaMesa][columnaMesa] == "[O]") {
+                                    billar[filaMesa][columnaMesa] = "[P]";
+                                    JOptionPane.showMessageDialog(null, "¡Espacio asignado exitosamente!\n");
+
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "¡Espacio ocupado!");
+                                }
+                                break;
+                        }
+                        if (mesaReserva > 3 || mesaReserva < 1) {
+                            JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+                        }
+                        if (mesaReserva == 2) {
+                            break;
+                        }
+                    }
+
+                    break;
+                case 2://visualizar
+                    while (true) {
+                        int mesaVisualizar = Integer.parseInt(JOptionPane.showInputDialog("Mesa de billar a visualizar:\n"
+                                + "1. Mesa de billar\n"
+                                + "2. Regresar"));
+                        switch (mesaVisualizar) {
+                            case 1:
+                                String mostrarEspacios1 = "";
+                                for (int i = 0; i < 2; i++) {
+                                    for (int j = 0; j < 3; j++) {
+                                        mostrarEspacios1 += billar[i][j] + "   ";
+                                    }
+                                    mostrarEspacios1 += "\n";
+                                }
+                                JOptionPane.showMessageDialog(null, "Mesa de billar:\n"
+                                        + mostrarEspacios1);
+                                break;
+                        }
+
+                        if (mesaVisualizar > 2 || mesaVisualizar < 1) {
+                            JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+                        }
+                        if (mesaVisualizar == 2) {
+                            break;
+                        }
+
+                    }
+
+                    break;
+
+            }
+
+            if (opcionesBillar > 3 || opcionesBillar < 1) {
+                JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+            }
+            if (opcionesBillar == 3) {
+                break;
+            }
+        }
+
         return true;
     }
 
@@ -688,10 +869,63 @@ public class ReservEspaciosR {
         }
     }
     public void mesaPingPongLiberar(){
-    
+        while (true) {
+            int mesaLiberar = Integer.parseInt(JOptionPane.showInputDialog("Mesa de Ping Pong a liberar:\n"
+                    + "1. Mesa Ping Pong\n"
+                    + "2. Regresar"));
+            switch (mesaLiberar) {
+                case 1://cancha 1
+                    int filaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra: "));
+                    int columnaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                    if (pingPong[filaMesa][columnaMesa] == "[P]") {
+                        pingPong[filaMesa][columnaMesa] = "[O]";
+                        JOptionPane.showMessageDialog(null, "¡Espacio liberado exitosamente!");
+
+                    } else if (pingPong[filaMesa][columnaMesa] == "[O]") {
+                        JOptionPane.showMessageDialog(null, "¡El espacio ya estaba liberado!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No es permitido liberar este espacio");
+                    }
+                    break;
+            }
+            if (mesaLiberar > 2 || mesaLiberar < 1) {
+                JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+            }
+            if (mesaLiberar == 2) {
+                break;
+            }
+        }
     }
     public void mesaBillarLiberar(){
-    
+    while (true) {
+            int mesaLiberar = Integer.parseInt(JOptionPane.showInputDialog("Mesa de billar a liberar:\n"
+                    + "1. Mesa de billar\n"
+                    + "2. Regresar"));
+            switch (mesaLiberar) {
+                case 1://cancha 1
+                    int filaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra: "));
+                    int columnaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna que se encuentra: "));
+                    if (billar[filaMesa][columnaMesa] == "[P]") {
+                        billar[filaMesa][columnaMesa] = "[O]";
+                        JOptionPane.showMessageDialog(null, "¡Espacio liberado exitosamente!");
+
+                    } else if (billar[filaMesa][columnaMesa] == "[O]") {
+                        JOptionPane.showMessageDialog(null, "¡El espacio ya estaba liberado!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No es permitido liberar este espacio");
+                    }
+                    break;
+            }
+            if (mesaLiberar > 2 || mesaLiberar < 1) {
+                JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
+
+            }
+            if (mesaLiberar == 2) {
+                break;
+            }
+        }
+    }
     }
 
 
