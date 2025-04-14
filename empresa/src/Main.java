@@ -10,20 +10,25 @@ import javax.swing.JOptionPane;
  *
  * @author sebas
  */
+
+
 public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        
         //conexion con constructores
         Empleados empleados = new Empleados("", 0, "", 0, "");
         Cubiculos cubiculos = new Cubiculos("", "");
         Parqueo parqueo = new Parqueo("", "", "", "");
-        ReservEspaciosR reservEspaciosR = new ReservEspaciosR("", "", "", "", "", "", "");
+        ReservEspaciosR reservEspaciosR = new ReservEspaciosR();
         SalaDeReunion salaDeReunion = new SalaDeReunion("", "", 0);
         Auditorio auditorio = new Auditorio(0, "", "");
 
+       
         JOptionPane.showMessageDialog(null, "¡Bienvenido!");
         while (true) {
             //llamando el metodo de opciones principales
@@ -63,12 +68,12 @@ public class Main {
             }
             if (opciones > 7 || opciones < 1) {
                 JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
-                continue;
             }
 
         }
 
     }
+        
 
     //metodo de opciones para poderlo llamar en otras clases
     public static int mostrarOpcionesPrincipales() {
@@ -83,15 +88,7 @@ public class Main {
                 + "6. Auditorio\n "
                 + "7. Salir"));
     }
-    /*
-    //Metodo principal para ejecutar la interfaz grafica
-     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ReservaEspaciosR().crearInterfaz();
-            }
-        });
-     }*/
 
+  
+   
 }
