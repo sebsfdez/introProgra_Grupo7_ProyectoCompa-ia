@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author sebas
  */
 public class Empleados {
-
+    
     private String nombre;
     private int ID;
     private String rol;
@@ -78,8 +78,9 @@ public class Empleados {
                     //llamado de accion o metodo en donde debe ir funcionalidad
                     break;
                 case 6:
-                    consultarReserva();//llamado de accion o metodo en donde debe ir funcionalidad
+                    constultarReseva();
                     break;
+                
 
             }
             if (opcionesEmpleados > 7 || opcionesEmpleados < 1) {
@@ -93,47 +94,41 @@ public class Empleados {
 
     //acciones para el recepcionista al ingresar a cada opcion del menu principal, 
     //deberia de llamarlo en el main dentro del menu de opciones
-    public boolean agregar() {
-
-        //ingreso de datos de relleno
-        while (true) {
-            //duplicacion al ser rellenada por completo la primer array
-            if (contador >= empleados.length) {
-                int nuevoTamanio = empleados.length * 2;
-                String arrayEmpleadoNuevo[][] = new String[nuevoTamanio][3];
-                //rellenando los datos del array anterior al nuevo
-                for (int i = 0; i < empleados.length; i++) {
-                    arrayEmpleadoNuevo[i] = empleados[i];
-                }
-                empleados = arrayEmpleadoNuevo;
-
-                break;
+    public String[] agregar() {
+    while (true) {
+        if (contador >= empleados.length) {
+            int nuevoTamanio = empleados.length * 2;
+            String[][] arrayEmpleadoNuevo = new String[nuevoTamanio][3];
+            for (int i = 0; i < empleados.length; i++) {
+                arrayEmpleadoNuevo[i] = empleados[i];
             }
-
-            //rellenar
-            empleados[contador][0] = JOptionPane.showInputDialog("Ingrese nombre:");
-            empleados[contador][1] = JOptionPane.showInputDialog("Ingrese ID:");
-            empleados[contador][2] = JOptionPane.showInputDialog("Ingrese rol:");
-
-            if (empleados[contador][0].isEmpty() || empleados[contador][1].isEmpty() || empleados[contador][2].isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Datos erroneos, volver a intentar");
-                return false;
-            }
-            //llevando una cuenta de la cantidad de repeticiones
-            contador++;
-            JOptionPane.showMessageDialog(null, "¡Agregado exitosamente! Total de empleados: " + contador);
-
-            String salida = JOptionPane.showInputDialog("Desea agregar otro empleado?(si/no)");
-
-            if (salida.equalsIgnoreCase("no")) {
-
-                return true;
-            }
-
+            empleados = arrayEmpleadoNuevo;
         }
-        return true;
 
+        String nombre = JOptionPane.showInputDialog("Ingrese nombre:");
+        String id = JOptionPane.showInputDialog("Ingrese ID:");
+        String rol = JOptionPane.showInputDialog("Ingrese rol:");
+
+        if (nombre.isEmpty() || id.isEmpty() || rol.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Datos erróneos. Vuelva a intentarlo.");
+            return null;
+        }
+
+        empleados[contador][0] = nombre;
+        empleados[contador][1] = id;
+        empleados[contador][2] = rol;
+
+        contador++;
+
+        JOptionPane.showMessageDialog(null, "¡Agregado exitosamente! Total de empleados: " + contador);
+
+        String salida = JOptionPane.showInputDialog("¿Desea agregar otro empleado? (si/no)");
+        if (salida.equalsIgnoreCase("no")) {
+            return new String[]{nombre, id, rol};  // Retornamos los datos del último empleado
+        }
     }
+}
+
 
     public boolean eliminar() {
         while (true) {
@@ -143,8 +138,8 @@ public class Empleados {
                 empleados[borrar][1] = "";
                 empleados[borrar][2] = "";
                 JOptionPane.showMessageDialog(null, "¡Empleado eliminado exitosamente!");
-            } else if (empleados[borrar][0] == "" && empleados[borrar][1] == "" && empleados[borrar][2] == "") {
-//deberia de salir este mensaje pero no logre hacerlo funcionar, no sale el mensjae
+            } else if ("".equals(empleados[borrar][0]) && "".equals(empleados[borrar][1]) && "".equals(empleados[borrar][2])) {
+            //deberia de salir este mensaje pero no logre hacerlo funcionar, no sale el mensjae
                 JOptionPane.showMessageDialog(null, "¡El empleado que desea eliminar ya no existe!");
                 return true;
             } else if (empleados[borrar][0] == null) {
@@ -176,9 +171,40 @@ public class Empleados {
     }
 
     public boolean modificar() {
-        JOptionPane.showMessageDialog(null, "funciona");//prueba
-        return true;//cambiar luego por un booleano que permita generar la accion
+        
+        while (true) {
+            String cedula = JOptionPane.showInputDialog("Ingrese el ID del empleado que desea modificar:");
+            boolean encontrado = false;
+
+        for (int i = 0; i < contador; i++) {
+            if (empleados[i][1].equals(cedula)) {
+                String nuevoNombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre del empleado:");
+                String nuevoRol = JOptionPane.showInputDialog("Ingrese el nuevo rol del empleado:");
+
+                if (nuevoNombre.isEmpty() || nuevoRol.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Datos inválidos. Intente de nuevo.");
+                    return false;
+                }
+
+                empleados[i][0] = nuevoNombre;
+                empleados[i][2] = nuevoRol;
+
+                JOptionPane.showMessageDialog(null, "¡Empleado modificado exitosamente!");
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null, "¡El empleado no ha sido encontrado!");
+        }
+
+        String salida = JOptionPane.showInputDialog("¿Desea modificar otro empleado? (si/no)");
+        if (salida.equalsIgnoreCase("no")) {
+            return true;
+        }
     }
+   }
 
     public boolean buscarEmpleado() {
         while (true) {
@@ -191,10 +217,11 @@ public class Empleados {
             //for que lea los datos en el rando del contador que se lleva
             for (int i = 0; i < contador; i++) {
                 if (empleados[i][1].equals(cedula)) {//si la posicion del ID concuerda con la cedula ingresada a buscar entonces mostrar todos los datos del empleado
-                    JOptionPane.showMessageDialog(null, "Empleado: \n"
-                            + "Nombre: " + empleados[i][0]
-                            + "\nID: " + empleados[i][1]
-                            + "\nRol: " + empleados[i][2]);
+                    JOptionPane.showMessageDialog(null, """
+                                                        Empleado: 
+                                                        Nombre: """ + empleados[i][0]
+                                                        + "\nID: " + empleados[i][1]
+                                                        + "\nRol: " + empleados[i][2]);
                     encontrado = true; //luego pone el encontrado a true para saber que fue encontrado
                     break;
                 }
