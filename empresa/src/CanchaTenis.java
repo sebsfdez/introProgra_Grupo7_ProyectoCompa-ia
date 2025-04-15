@@ -1,4 +1,3 @@
-
 import javax.swing.JOptionPane;
 
 /*
@@ -90,8 +89,13 @@ public class CanchaTenis {
                         switch (canchaReserva) {
                             case 1 -> {
                                 //cancha 1
-                               int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila: "));
-                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna: "));
+                               int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra (1 - 1): "));
+                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna en que se encuentra (1 - 3): "));
+                                
+                                if (fila < 1 || fila > 1 || columna < 1 || columna > 2) {
+                                    JOptionPane.showMessageDialog(null, "¡Fila o columna fuera de rango!");
+                                        continue;
+                                    }
 
                              if ("[O]".equals(canchaTenis1[fila][columna])) {
 
@@ -110,8 +114,13 @@ public class CanchaTenis {
 
                             case 2 -> {
                                 //cancha 2
-                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila: "));
-                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna: "));
+                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra (1 - 1): "));
+                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna en que se encuentra (1 - 2): "));
+                                
+                                if (fila < 1 || fila > 1 || columna < 1 || columna > 2) {
+                                    JOptionPane.showMessageDialog(null, "¡Fila o columna fuera de rango!");
+                                        continue;
+                                    }
 
                              if ("[O]".equals(canchaTenis2[fila][columna])) {
 
@@ -253,10 +262,5 @@ public class CanchaTenis {
             }
         }
     }
-//metodo para guardar los empleados
-  
-    
-}
-    
-    
 
+}
