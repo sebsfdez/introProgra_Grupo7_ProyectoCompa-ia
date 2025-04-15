@@ -82,8 +82,12 @@ public class MesasBillarYPingPong {
                         switch (mesaReserva) {
                             case 1 -> {
                                 //cancha 1
-                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila: "));
-                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna: "));
+                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra (1 - 1): "));
+                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna en que se encuentra (1 - 2): "));
+                                if (fila < 1 || fila > 1 || columna < 1 || columna > 2) {
+                                    JOptionPane.showMessageDialog(null, "¡Fila o columna fuera de rango!");
+                                        continue;
+                                    }
 
                              if ("[O]".equals(pingPong[fila][columna])) {
 
@@ -181,8 +185,13 @@ public class MesasBillarYPingPong {
                         switch (mesaReserva) {
                             case 1 -> {
                                 //cancha 1
-                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila: "));
-                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna: "));
+                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra (1 - 1): "));
+                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna en que se encuentra (1 - 2): "));
+                                
+                              if (fila < 1 || fila > 1 || columna < 1 || columna > 2) {
+                                    JOptionPane.showMessageDialog(null, "¡Fila o columna fuera de rango!");
+                                        continue;
+                                    }
 
                              if ("[O]".equals(billar[fila][columna])) {
 
@@ -266,6 +275,7 @@ public class MesasBillarYPingPong {
                     //cancha 1
                     int filaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra (1 - 1): "));
                     int columnaMesa = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna en que se encuentra (1 - 2): "));
+                    
                     if (filaMesa < 1 || filaMesa > 1 || columnaMesa < 1 || columnaMesa > 2) {
                         JOptionPane.showMessageDialog(null, "¡Fila o columna fuera de rango!");
                         continue;
@@ -323,4 +333,3 @@ public class MesasBillarYPingPong {
         }
     }
 }
-
