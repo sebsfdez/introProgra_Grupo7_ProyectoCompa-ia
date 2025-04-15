@@ -1,3 +1,5 @@
+
+
 import javax.swing.JOptionPane;
 
 /**
@@ -10,8 +12,6 @@ public class ReservEspaciosR {
     CanchaBasket canchaB = new CanchaBasket();
     CanchaFut canchaF = new CanchaFut();
     CanchaTenis canchaT = new CanchaTenis();
-
-    
 
     //opcion 4 reserva de espacios recreativos
     public void mostrarOpcionesRER() { //RER: reserva de espacios recreativos
@@ -26,25 +26,25 @@ public class ReservEspaciosR {
                     + " 7. Regresar al menu principal"));
             switch (opcionesRER) {
                 case 1:
-                    
+                    liberarEspacioR();
                     break;
 
                 case 2:
-                    PingPong();
+                    mesa.MesaPingPong();
                     break;
 
                 case 3:
-                    MesaBillar();
+                    mesa.MesaBillar();
                     break;
                 case 4:
-                    CanchaFut();
+                    canchaF.CanchaFut();
                     break;
                 case 5:
-                    CanchaBasket();
+                    canchaB.CanchaBasket();
                     break;
 
                 case 6:
-                    CanchaTenis();
+                    canchaT.CanchaTenis();
                     break;
 
             }
@@ -72,19 +72,19 @@ public class ReservEspaciosR {
 
             switch (lugarLiberar) {
                 case 1:
-                    mesaPingPongLiberar();
+                    mesa.mesaPingPongLiberar();
                     break;
                 case 2:
-                    mesaBillarLiberar();
+                    mesa.mesaBillarLiberar();
                     break;
                 case 3:
-                    canchaFutLiberar();
+                    canchaF.canchaFutLiberar();
                     break;
                 case 4:
-                    canchaBasketLiberar();
+                    canchaB.canchaBasketLiberar();
                     break;
                 case 5:
-                    canchaTenisLiberar();
+                    canchaT.canchaTenisLiberar();
                     break;
 
             }
@@ -99,48 +99,5 @@ public class ReservEspaciosR {
 
         return true;
     }
-    
-    
-//opciones del menu liberar
-    private boolean mesaPingPongLiberar() {
-        mesa.mesaPingPongLiberar();
-        return true;
-    }
-
-    private void mesaBillarLiberar() {
-        mesa.mesaBillarLiberar();
-    }
-
-    private void canchaFutLiberar() {
-        canchaF.canchaFutLiberar();
-    }
-
-    private void canchaBasketLiberar() {
-      canchaB.canchaBasketLiberar();
-    }
-
-    private void canchaTenisLiberar() {
-      canchaT.canchaTenisLiberar();
-    }
-    
-    //Opciones del menu
-    private void PingPong() {
-       mesa.MesaPingPong();
-    }
-
-    private void MesaBillar() {
-        mesa.MesaBillar();
-    }
-
-    private void CanchaTenis() {
-        canchaT.CanchaTenis();
-    }
-
-    private void CanchaFut() {
-        canchaF.CanchaFut();
-    }
-
-    private void CanchaBasket() {
-        canchaB.CanchaBasket();
-    }
+   
 }
