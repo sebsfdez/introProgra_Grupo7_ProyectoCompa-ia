@@ -67,8 +67,13 @@ public class CanchaFut {
                                 + "3. Regresar"));
                         switch (canchaReserva) {
                             case 1://cancha 1
-                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila: "));
-                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna: "));
+                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra (1 - 6): "));
+                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna en que se encuentra (1 - 2): "));
+                                
+                            if (fila < 1 || fila > 6 || columna < 1 || columna > 2) {
+                                    JOptionPane.showMessageDialog(null, "¡Fila o columna fuera de rango!");
+                                        continue;
+                                    }
 
                              if ("[O]".equals(canchaFut1[fila][columna])) {
 
@@ -86,8 +91,13 @@ public class CanchaFut {
                                 break;
                             case 2://cancha 2
                                 
-                                int fila2 = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila: "));
-                                int columna2 = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna: "));
+                                int fila2 = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila en que se encuentra (1 - 6): "));
+                                int columna2 = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna en que se encuentra (1 - 2):"));
+                                
+                                if (fila2 < 1 || fila2 > 6 || columna2 < 1 || columna2 > 2) {
+                                    JOptionPane.showMessageDialog(null, "¡Fila o columna fuera de rango!");
+                                        continue;
+                                    }
 
                              if ("[O]".equals(canchaFut2[fila2][columna2])) {
 
