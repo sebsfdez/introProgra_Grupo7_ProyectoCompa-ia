@@ -67,8 +67,8 @@ public class CanchaFut {
                                 + "3. Regresar"));
                         switch (canchaReserva) {
                             case 1://cancha 1
-                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila: "));
-                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna: "));
+                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila(1-6): "));
+                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna(1-2): "));
 
                                 if ("[O]".equals(canchaFut1[fila][columna])) {
 
