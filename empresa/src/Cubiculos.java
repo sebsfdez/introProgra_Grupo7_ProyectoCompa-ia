@@ -54,23 +54,23 @@ public class Cubiculos {
         while (true) {
             int opcionesCubiculos = Integer.parseInt(JOptionPane.showInputDialog(null, "Elegiste la opcion *Cubiculos* | Que deseas hacer?\n"
                     + " 1. Liberar espacio cubiculo p\n"
-                    + " 3. Reservar cubiculos\n"
-                    + " 4. Regresar al menu principal"));//agregar más opciones si es necesario porque me falto poner más
+                    + " 2. Reservar cubiculos\n"
+                    + " 3. Regresar al menu principal"));//agregar más opciones si es necesario porque me falto poner más
             switch (opcionesCubiculos) {
                 case 1:
                     liberarEspacioCubiculo();
                     break;//meter más cases si es necesario
-                case 3:
+                case 2:
                     ReservarCubiculo();
                     break;//meter más cases si es necesario
              
 
             }
-            if (opcionesCubiculos > 4 || opcionesCubiculos < 1) {
+            if (opcionesCubiculos > 3 || opcionesCubiculos < 1) {
                 JOptionPane.showMessageDialog(null, "¡Opcion invalida! Verifique que se encuentre entre las opciones");
 
             }
-            if (opcionesCubiculos == 4) {
+            if (opcionesCubiculos == 3) {
                 break;
             }
         }
