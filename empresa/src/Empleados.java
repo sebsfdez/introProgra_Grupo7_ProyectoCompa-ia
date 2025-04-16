@@ -171,40 +171,41 @@ public class Empleados {
     }
 
     public boolean modificar() {
-        
-        while (true) {
-            String cedula = JOptionPane.showInputDialog("Ingrese el ID del empleado que desea modificar:");
-            boolean encontrado = false;
+        //Verificamos si hay arreglos dentro del programa
+        if (contador == 0) {
+            JOptionPane.showMessageDialog(null, "Aún no hay empleados registrados");
+            return false;
+        }
+        //La recepcionista revisara en el sistema si hay un empleado con el ID ingresado
+        String d = JOptionPane.showInputDialog("Digite el ID del empleado");
 
+        //Se agrega la logica para encontrar el id del empleado
+        boolean encontrado = false;
         for (int i = 0; i < contador; i++) {
-            if (empleados[i][1].equals(cedula)) {
-                String nuevoNombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre del empleado:");
-                String nuevoRol = JOptionPane.showInputDialog("Ingrese el nuevo rol del empleado:");
-
-                if (nuevoNombre.isEmpty() || nuevoRol.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Datos inválidos. Intente de nuevo.");
-                    return false;
-                }
-
-                empleados[i][0] = nuevoNombre;
-                empleados[i][2] = nuevoRol;
-
-                JOptionPane.showMessageDialog(null, "¡Empleado modificado exitosamente!");
+            if (empleados[i][1].equals(d)) {
                 encontrado = true;
+                //Se muestra al empleado 
+                JOptionPane.showMessageDialog(null, "Empleado encontrado..." + "\n"
+                        + "Nombre: " + empleados[i][0] + "\n"
+                        + "ID: " + empleados[i][1] + "\n"
+                        + "Rol: " + empleados[i][2]);
+
+                //Se solicita para modificar los datos del empleado
+                empleados[i][0] = JOptionPane.showInputDialog("Digite el nuevo nombre: ", empleados[i][0]); //esta funcion me permite actualizar 
+                empleados[i][1] = JOptionPane.showInputDialog("Digite el nuevo ID ", empleados[i][1]);          //de inmediato los datos del empleado
+                empleados[i][2] = JOptionPane.showInputDialog("Digite el nuevo rol: ", empleados[i][2]);
+
+                JOptionPane.showMessageDialog(null, "Datos actualizados...");
                 break;
+
             }
-        }
+            if (!encontrado) {
+                JOptionPane.showMessageDialog(null, "¡Empleado no encontrado!");
+            }
 
-        if (!encontrado) {
-            JOptionPane.showMessageDialog(null, "¡El empleado no ha sido encontrado!");
         }
-
-        String salida = JOptionPane.showInputDialog("¿Desea modificar otro empleado? (si/no)");
-        if (salida.equalsIgnoreCase("no")) {
-            return true;
-        }
+        return true;
     }
-   }
 
     public boolean buscarEmpleado() {
         while (true) {
