@@ -54,8 +54,8 @@ public class CanchaBasket {
                                 + "2. Regresar"));
                         switch (canchaReserva) {
                             case 1://cancha 1
-                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila: "));
-                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna: "));
+                                int fila = Integer.parseInt(JOptionPane.showInputDialog("Digite la fila(1-5): "));
+                                int columna = Integer.parseInt(JOptionPane.showInputDialog("Digite la columna(1-2): "));
 
                                 if ("[O]".equals(canchaBasket[fila][columna])) {
 
