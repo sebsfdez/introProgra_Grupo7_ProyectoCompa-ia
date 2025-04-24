@@ -24,6 +24,8 @@ public class Empleados {
         this.ID = ID;
         this.rol = rol;
 
+        empleados[]
+
     }
 
     public String getNombre() {
@@ -170,42 +172,45 @@ public class Empleados {
         return true;
     }
 
-    public boolean modificar() {
+   public boolean modificar() {
         //Verificamos si hay arreglos dentro del programa
-        if (contador == 0) {
-            JOptionPane.showMessageDialog(null, "Aún no hay empleados registrados");
-            return false;
-        }
-        //La recepcionista revisara en el sistema si hay un empleado con el ID ingresado
-        String d = JOptionPane.showInputDialog("Digite el ID del empleado");
+        while (true) {
+            if (contador == 0) {
+                JOptionPane.showMessageDialog(null, "Aún no hay empleados registrados");
+                return false;
+            }
+            //La recepcionista revisara en el sistema si hay un empleado con el ID ingresado
+            String d = JOptionPane.showInputDialog("Digite el ID del empleado");
 
-        //Se agrega la logica para encontrar el id del empleado
-        boolean encontrado = false;
-        for (int i = 0; i < contador; i++) {
-            if (empleados[i][1].equals(d)) {
-                encontrado = true;
-                //Se muestra al empleado 
-                JOptionPane.showMessageDialog(null, "Empleado encontrado..." + "\n"
-                        + "Nombre: " + empleados[i][0] + "\n"
-                        + "ID: " + empleados[i][1] + "\n"
-                        + "Rol: " + empleados[i][2]);
+            //Se agrega la logica para encontrar el id del empleado
+            boolean encontrado = false;
+            for (int i = 0; i < contador; i++) {
+                if (empleados[i][1].equals(d)) {
+                    encontrado = true;
+                    //Se muestra al empleado 
+                    JOptionPane.showMessageDialog(null, "Empleado encontrado..." + "\n"
+                            + "Nombre: " + empleados[i][0] + "\n"
+                            + "ID: " + empleados[i][1] + "\n"
+                            + "Rol: " + empleados[i][2]);
 
-                //Se solicita para modificar los datos del empleado
-                empleados[i][0] = JOptionPane.showInputDialog("Digite el nuevo nombre: ", empleados[i][0]); //esta funcion me permite actualizar 
-                empleados[i][1] = JOptionPane.showInputDialog("Digite el nuevo ID ", empleados[i][1]);          //de inmediato los datos del empleado
-                empleados[i][2] = JOptionPane.showInputDialog("Digite el nuevo rol: ", empleados[i][2]);
+                    //Se solicita para modificar los datos del empleado
+                    empleados[i][0] = JOptionPane.showInputDialog("Digite el nuevo nombre: ", empleados[i][0]); //esta funcion me permite actualizar 
+                    empleados[i][1] = JOptionPane.showInputDialog("Digite el nuevo ID ", empleados[i][1]);          //de inmediato los datos del empleado
+                    empleados[i][2] = JOptionPane.showInputDialog("Digite el nuevo rol: ", empleados[i][2]);
 
-                JOptionPane.showMessageDialog(null, "Datos actualizados...");
-                break;
+                    JOptionPane.showMessageDialog(null, "Datos actualizados...");
+                    break;
+
+                }
+                if (!encontrado) {
+                    JOptionPane.showMessageDialog(null, "¡Empleado no encontrado!");
+                }
 
             }
-            if (!encontrado) {
-                JOptionPane.showMessageDialog(null, "¡Empleado no encontrado!");
-            }
-
+            return true;
         }
-        return true;
     }
+    
 
     public boolean buscarEmpleado() {
         while (true) {
